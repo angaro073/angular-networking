@@ -18,13 +18,13 @@ import { User } from './user';
   `,
 })
 export class AppComponent implements OnInit {
-  private readonly apiURL: string = "https://jsonplaceholder.typicode.com/users";
-  protected users: User[] = [];
+  readonly apiURL: string = "https://jsonplaceholder.typicode.com/users";
+  users: User[] = [];
 
   constructor(protected httpClient: HttpClient) {}
 
   getUsers() {
-    this.httpClient.get<User[]>(this.apiURL).subscribe(res => this.users = res);
+    this.httpClient.get<User[]>(this.apiURL).subscribe(res => {this.users = res;});
   }
   ngOnInit() {
     this.getUsers();
